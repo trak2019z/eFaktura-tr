@@ -13,7 +13,7 @@
                                 <h3 class="mb-0">{{ __('Lista kontrahentów') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('kontrahenci.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
+                                <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
                             </div>
                         </div>
                     </div>
