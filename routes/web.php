@@ -21,6 +21,37 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('/clients', 'ClientsController@index')->name('clients');
-});
+    Route::get('/klient', 'ClientsController@index')->name('clients.index');
+	Route::get('/klient/create', 'ClientsController@create')->name('clients.create');
+	
+	Route::get('faktury', [
+        'uses' => 'InvoiceController@index',
+        'as' => 'invoice.index'
+    ]);
 
+    Route::get('faktury/create', [
+        'uses' => 'InvoiceController@create',
+        'as' => 'invoice.create'
+    ]);
+
+    Route::post('faktury/store', [
+        'uses' => 'InvoiceController@store',
+        'as' => 'invoice.store'
+    ]);
+
+    Route::get('faktury/edit/{id}', [
+        'uses' => 'InvoiceController@edit',
+        'as' => 'invoice.edit'
+    ]);
+
+    Route::put('faktury/{id}', [
+        'uses' => 'InvoiceController@update',
+        'as' => 'invoice.update'
+    ]);
+
+    Route::delete('faktury/{id}', [
+        'uses' => 'InvoiceController@destroy',
+        'as' => 'invoice.destroy'
+    ]);
+
+});

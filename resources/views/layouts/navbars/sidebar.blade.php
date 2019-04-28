@@ -62,23 +62,13 @@
                     <div class="collapse show" id="invoice">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <a class="nav-link" href="{{ route('invoice.create') }}">
                                     {{ __('Nowa faktura') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Edycja faktury') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link" href="{{ route('invoice.index') }}">
                                     {{ __('Lista faktur') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('Dodaj klienta') }}
                                 </a>
                             </li>
                         </ul>
@@ -93,12 +83,12 @@
                     <div class="collapse show" id="invoice-user">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#{{ route('clients.create') }}">
+                                <a class="nav-link" href="{{ route('clients.create') }}">
                                     {{ __('Dodaj nowego') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#{{ route('clients.index') }}">
+                                <a class="nav-link" href="{{ route('clients.index') }}">
                                     {{ __('Lista kontrahenów') }}
                                 </a>
                             </li>

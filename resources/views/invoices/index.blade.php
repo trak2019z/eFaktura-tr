@@ -7,7 +7,7 @@
 				<div class="card-header border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0">{{ __('Lista kontrahentów') }}</h3>
+							<h3 class="mb-0">{{ __('Lista faktur') }}</h3>
 						</div>
 						<div class="col-4 text-right">
 							<a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
@@ -42,19 +42,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($clients as $client)
+							@foreach ($invoices as $invoice)
 							<tr>
 								<td>
-									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP }}</a>
-								</td>
-								<td>{{ $client->company }}</td>
-
-								<td>
-									<a href="mailto:{{ $client->firstName }}">{{ $client->firstName }}</a>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP }}</a>
 								</td>
 								<td>
-									<a href="mailto:{{ $client->lastName }}">{{ $client->lastName }}</a>
-								</td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->firstName }}  tt</a>
+								</td>								{{--
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,6 +70,7 @@
 										</div>
 									</div>
 								</td>
+								--}}
 							</tr>
 							@endforeach
 						</tbody>
