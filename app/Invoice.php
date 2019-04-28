@@ -18,62 +18,73 @@ class Invoice extends Model
         'status',
         'price',
     ];
-//
-//    public function generateInvoiceNumber()
-//    {
-//        $invoice = Invoice::select('id','number')->orderBy('id', 'desc')->first();
-//        if (count($invoice)) {
-//            if(strlen($invoice->number) == 11) {
-//                $old_number = substr($invoice->number, -11, 1);
-//            } else if (strlen($invoice->number) == 12) {
-//                 $old_number = substr($invoice->number, -12, 2);
-//            } else if (strlen($invoice->number) == 13) {
-//                $old_number = substr($invoice->number, -13, 3);
-//            } else if (strlen($invoice->number) == 14) {
-//                $old_number = substr($invoice->number, -14, 4);
-//            } else if (strlen($invoice->number) == 15) {
-//                $old_number = substr($invoice->number, -15, 5);
-//            } else if (strlen($invoice->number) == 16) {
-//                $old_number = substr($invoice->number, -16, 6);
-//            }
-//
-//            $date = (++$old_number).'/'.date('m').'/a/'. date('Y');
-//            $old_month = substr($invoice->number, -9, 2);
-//
-//            if ($old_month != date('m')) {
-//                $date = '1/'.date('m').'/a/'. date('Y');
-//            }
-//
-//            return $date;
-//        } else {
-//            return '1/'.date('m').'/a/'. date('Y');
-//        }
-//    }
-//
-//    public function fillInvoice(Array $params, Invoice $invoice)
-//    {
-//        if (count($params) == 13) {
-//            $invoice->number = $this->generateInvoiceNumber();
-//            $invoice->price = $params['price'];
-//            $invoice->payment_form = $params['payment_form'];
-//            $invoice->status = 0;
-//            $invoice->category = $params['category'];
-//            $invoice->NIP = $params['NIP'];
-//            $invoice->company = $params['company'];
-//            $invoice->firstName = $params['firstName'];
-//            $invoice->lastName = $params['lastName'];
-//            $invoice->town = $params['town'];
-//            $invoice->street = $params['street'];
-//            $invoice->property_number = $params['property_number'];
-//            $invoice->postcode = $params['postcode'];
-//            $invoice->status = 1;
-//            $invoice->product = $params['product'];
-//            $invoice->order = $params['order'];
-//            return $invoice;
-//        } else {
-//            return false;
-//        }
-//    }
+
+    public function generateInvoiceNumber()
+    {
+        $invoice = Invoice::select('id','number')->orderBy('id', 'desc')->first();
+				
+        if ($invoice != null) {
+			
+			$lenght = 9;
+			$param_lenght = 1;
+			
+			$invoice_lenght = strlen($invoice->number);
+			$old_number = $this->getInvoiceNumber($invoice, $invoice_lenght, $lenght, $param_lenght);
+									 
+            $date = (++$old_number).'/'.date('m').'/'. date('Y');
+            $old_month = substr($invoice->number, -7, 2);
+
+            if ($old_month != date('m')) {
+                $date = '1/'.date('m').'/'. date('Y');
+            }
+
+            return $date;
+			
+        } else {
+            return '1/'.date('m').'/'. date('Y');
+        }
+    }
+	
+	public function getInvoiceNumber($invoice, $invoice_lenght, $lenght, $param_lenght) 
+	{
+		
+			if($invoice_lenght == $lenght) {
+				
+				$lenght = $lenght * (-1);
+				
+				$old_number = substr($invoice->number, $lenght, $param_lenght);
+				
+				return $old_number;
+				
+			} else {
+				++$lenght;
+				++$param_lenght;
+				
+				$old_number = $this->getInvoiceNumber($invoice, $invoice_lenght, $lenght, $param_lenght);
+				
+				return $old_number;
+			}
+		
+	}
+
+    public function fillInvoice(Array $params, Invoice $invoice)
+    {
+        if (count($params) == 10) {
+            $invoice->number = $this->generateInvoiceNumber();
+			$invoice->NIP = $params['NIP'];
+			$invoice->firstName = $params['firstName'];
+			$invoice->lastName = $params['lastName'];
+			$invoice->street = $params['street'];
+			$invoice->town = $params['town'];
+			$invoice->postcode = $params['postcode'];
+			$invoice->postcode_town = $params['postcode_town'];
+			$invoice->property_number = $params['property_number'];
+			$invoice->status = $params['payment_status'];
+            return $invoice;
+        } else {
+            return false;
+        }
+    }
 //  
 //    public function fillInvoiceADmin(Array $params, Invoice $invoice)
 //    {

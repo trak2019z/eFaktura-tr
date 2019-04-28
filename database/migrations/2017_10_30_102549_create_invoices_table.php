@@ -16,8 +16,8 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('number');
-            $table->string('NIP')->nullable();;
-            $table->string('name')->nullable();;
+            $table->string('NIP')->nullable();
+            $table->string('name')->nullable();
             $table->string('firstName');
             $table->string('lastName');
             $table->string('street')->nullable();
@@ -25,10 +25,8 @@ class CreateInvoicesTable extends Migration
             $table->string('postcode');
             $table->string('postcode_town');
             $table->string('property_number');
-            $table->string('phone_number')->nullable();
-            $table->integer('status');
+            $table->string('status');
             $table->integer('client_id')->unsigned()->nullable();
-            $table->double('price');
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('set null');

@@ -13,7 +13,6 @@ $factory->define(App\Invoice::class, function (Faker $faker) {
 		'postcode' => '36-145',
 		'postcode_town' => $faker->address,
 		'property_number' => '23',
-		'price' => $faker->numberBetween(50,1200),
         'status' => $faker->numberBetween(0,1),
     ];
 });

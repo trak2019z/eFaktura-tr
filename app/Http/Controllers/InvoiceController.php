@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -48,54 +49,56 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
 		
+	
         $client = Client::where('id', '=', $request->id)->first();
-      
-        $firstName = $client->firstName;
-        $lastName = $client->lastName;
+
+		
+
         $product = $request->input('product__name');
-	    $product__count = $request->input('product__count');
-		$product_price = $request->input('product__price');
+//	    $product_count = $request->input('product_count');
+//		$product_price = $request->input('product_price');
         $payment_status = $request->input('payment_status');
 		$paymeny_date = $request->input('payment_date');
         $exp_date = Carbon::now()->addDays($paymeny_date)->format('Y-m-d\TH:i:s');
 
+		
+		
         $params = [
-            'price' => $points,
-            'category' => $client->category,
+//			'number' => '2002',
             'NIP' => $client->NIP,
-            'company' => $client->company,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'street' => $client->user->address->street,
-            'postcode' => $client->user->address->postcode,
-            'town' => $client->user->address->town,
-            'property_number' => $client->user->address->property_number,
-            'product' => $product,
-            'status' => $status,
-            'payment_form' => $payment_form,
+            'name' => $client->name,
+            'firstName' => $client->firstName,
+            'lastName' => $client->lastName,
+            'street' => $client->street,
+            'town' => $client->town,
+            'postcode' => $client->postcode,
+			'postcode_town' => $client->postcode_town,
+            'property_number' => $client->property_number,
+//            'product' => $product,
+            'payment_status' => $payment_status,
         ];
       
         $invoice = new Invoice();
-        $invoice = $invoice->fillInvoiceAdmin($params, $invoice);
+        $invoice = $invoice->fillInvoice($params, $invoice);
 
         if ($invoice != false) {
-
+			
           $client->invoice()->save($invoice);
-          $position = new InvoicePosition();
-          
-          $position->amount = $points;
-          $position->item = $product;
-          
-          $invoice->position()->save($position);
+//          $position = new InvoicePosition();
+//          
+//          $position->amount = $points;
+//          $position->item = $product;
+
+//          $invoice->position()->save($position);
       
         return redirect()
                 ->back()
-                ->with('info', 'Dodano fakture');
+                ->with('info', 'Twoja faktura została utworzona.');
           
         } else {
             return redirect()
                 ->back()
-                ->with('error', 'Coś poszło nie tak, spróbuj ponownie');
+                ->with('error', 'Coś poszło nie tak, spróbuj ponownie.');
         }
     }
 

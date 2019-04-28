@@ -21867,3 +21867,14 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+
+
+.alert {
+	position: fixed;
+	max-width: 900px;
+	margin: auto;
+	z-index: 999;
+	left: 0;
+	right: 0;
+	top: 25px;
+}

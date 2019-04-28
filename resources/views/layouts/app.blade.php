@@ -28,6 +28,7 @@
         
         <div class="main-content">
             @include('layouts.navbars.navbar')
+			@include('layouts.notifactions')
             @yield('content')
         </div>
 

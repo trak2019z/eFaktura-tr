@@ -102,9 +102,9 @@
 									<div class="form-group">
 										<label class="form-control-label" for="payment_status">Termin zapłaty</label>
 										<select class="form-control" id="payment_status" name="payment_date">
-												<option value="14 dni">14 dni</option>
-												<option value="7 dni">7 dni</option>
-												<option value="Zapłacono">Zapłacono</option>
+												<option value="14">14 dni</option>
+												<option value="7">7 dni</option>
+												<option value="0">Zapłacono</option>
 										</select>
 									</div>
 								</div>
