@@ -83,12 +83,12 @@
                     <div class="collapse show" id="invoice-user">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('clients.create') }}">
+                                <a class="nav-link" href="{{ route('client.create') }}">
                                     {{ __('Dodaj nowego') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('clients.index') }}">
+                                <a class="nav-link" href="{{ route('client.index') }}">
                                     {{ __('Lista kontrahenów') }}
                                 </a>
                             </li>

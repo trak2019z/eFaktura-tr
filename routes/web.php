@@ -21,8 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('/klient', 'ClientsController@index')->name('clients.index');
-	Route::get('/klient/create', 'ClientsController@create')->name('clients.create');
+    Route::get('/klient', 'ClientsController@index')->name('client.index');
+	Route::get('/klient/create', 'ClientsController@create')->name('client.create');
 	
 	Route::get('faktury', [
         'uses' => 'InvoiceController@index',

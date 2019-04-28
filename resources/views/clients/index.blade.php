@@ -10,7 +10,7 @@
 							<h3 class="mb-0">{{ __('Lista kontrahentów') }}</h3>
 						</div>
 						<div class="col-4 text-right">
-							<a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
+							<a href="{{ route('client.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
 						</div>
 					</div>
 				</div>
@@ -62,11 +62,11 @@
                                                 </a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											@if ($client->id != auth()->id())
-											<form action="{{ route('user.destroy', $user) }}" method="post">
+											<form action="{{ route('client.index', $client) }}" method="post">
 												@csrf @method('delete')
 
-												<a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edytuj') }}</a>
-												<button type="button" class="dropdown-item" onclick="confirm('{{ __(" Czy na pewno chcesz usunąć tego użytkownika? ") }}') ? this.parentElement.submit() : ''">
+												<a class="dropdown-item" href="{{ route('client.index', $client) }}">{{ __('Edytuj') }}</a>
+												<button type="button" class="dropdown-item" onclick="confirm('{{ __(" Czy na pewno chcesz usunąć tego kontrahenta? ") }}') ? this.parentElement.submit() : ''">
                                                                 {{ __('Usuń') }}
                                                             </button>
 											</form>
