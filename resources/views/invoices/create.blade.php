@@ -41,14 +41,14 @@
 
 
 							<div class="row">
+							
 								<div class="col-xl-12">
-
 
 									<div class="row">
 										<div class="col col-xl-4 col-sm-12">
 											<div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
 												<label class="form-control-label" for="input-password">{{ __('Nazwa towaru/usługi') }}</label>
-												<input type="text" name="product__name" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="Kodowanie strony" required> @if ($errors->has('password'))
+												<input type="text" name="product_name[]" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="Kodowanie strony" required> @if ($errors->has('password'))
 												<span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span> @endif
@@ -57,8 +57,8 @@
 
 										<div class="col col-xl-2 col-sm-12">
 											<div class="form-group{{ $errors->has('product__count') ? ' has-danger' : '' }}">
-												<label class="form-control-label" for="product__count">{{ __('Ilość') }}</label>
-												<input type="number" name="product__count" id="product__count" class="form-control form-control-alternative{{ $errors->has('product__count') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="24" required> 
+												<label class="form-control-label" for="product_count">{{ __('Ilość') }}</label>
+												<input type="number" name="product_count[]" id="product_count" class="form-control form-control-alternative{{ $errors->has('product__count') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="24" required> 
 												@if ($errors->has('product__count'))
 												<span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('product__count') }}</strong>
@@ -68,11 +68,11 @@
 										</div>
 
 										<div class="col col-xl-2 col-sm-12">
-											<div class="form-group{{ $errors->has('product__price') ? ' has-danger' : '' }}">
-												<label class="form-control-label" for="product__price">{{ __('Kwota') }}</label>
-												<input type="text" name="product__price" id="product__price" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="299" required> @if ($errors->has('password'))
+											<div class="form-group{{ $errors->has('product_price') ? ' has-danger' : '' }}">
+												<label class="form-control-label" for="product_price">{{ __('Kwota') }}</label>
+												<input type="text" name="product_price[]" class="form-control form-control-alternative{{ $errors->has('product_price') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="200" required> @if ($errors->has('product_price'))
 												<span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('product__price') }}</strong>
+                                            <strong>{{ $errors->first('product_price') }}</strong>
                                         </span> @endif
 											</div>
 
@@ -81,6 +81,44 @@
 									</div>
 								</div>
 
+								<div class="col-xl-12">
+
+									<div class="row">
+										<div class="col col-xl-4 col-sm-12">
+											<div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+												<label class="form-control-label" for="input-password">{{ __('Nazwa towaru/usługi') }}</label>
+												<input type="text" name="product_name[]" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="Modernizacja" required> @if ($errors->has('password'))
+												<span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span> @endif
+											</div>
+										</div>
+
+										<div class="col col-xl-2 col-sm-12">
+											<div class="form-group{{ $errors->has('product__count') ? ' has-danger' : '' }}">
+												<label class="form-control-label" for="product_count">{{ __('Ilość') }}</label>
+												<input type="number" name="product_count[]" id="product_count" class="form-control form-control-alternative{{ $errors->has('product__count') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="2" required> 
+												@if ($errors->has('product__count'))
+												<span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('product__count') }}</strong>
+                                        </span> @endif
+											</div>
+
+										</div>
+
+										<div class="col col-xl-2 col-sm-12">
+											<div class="form-group{{ $errors->has('product_price') ? ' has-danger' : '' }}">
+												<label class="form-control-label" for="product_price">{{ __('Kwota') }}</label>
+												<input type="text" name="product_price[]" class="form-control form-control-alternative{{ $errors->has('product_price') ? ' is-invalid' : '' }}" placeholder="{{ __('') }}" value="600" required> @if ($errors->has('product_price'))
+												<span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('product_price') }}</strong>
+                                        </span> @endif
+											</div>
+
+										</div>
+
+									</div>
+								</div>
 
 							</div>
 

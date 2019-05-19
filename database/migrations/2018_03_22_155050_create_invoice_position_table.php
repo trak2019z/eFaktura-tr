@@ -15,8 +15,9 @@ class CreateInvoicePositionTable extends Migration
     {
         Schema::create('invoice_positions', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('amount');
             $table->integer('invoice_id')->unsigned()->nullable();
+            $table->double('product_count');
+            $table->double('price');
             $table->string('item');
 
             $table->foreign('invoice_id')->references('id')->on('invoices');

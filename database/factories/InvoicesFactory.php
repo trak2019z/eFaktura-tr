@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(App\Invoice::class, function (Faker $faker) {
     static $password;
 
     return [
-        'number' => $faker->randomNumber(),
+		'number' => $faker->randomNumber(),
+		'NIP' => Str::random(10),
 		'firstName' => $faker->name,
 		'lastName' => $faker->name,
 		'town' => $faker->address,

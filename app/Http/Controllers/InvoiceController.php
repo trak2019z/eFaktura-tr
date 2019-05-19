@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
+use Dompdf\Dompdf;
 
 class InvoiceController extends Controller
 {
@@ -47,24 +49,17 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-		
-	
+    {	
         $client = Client::where('id', '=', $request->id)->first();
 
-		
-
-        $product = $request->input('product__name');
-//	    $product_count = $request->input('product_count');
-//		$product_price = $request->input('product_price');
+        $product = $request->input('product_name');
+	    $product_count = $request->input('product_count');
+		$product_price = $request->input('product_price');
         $payment_status = $request->input('payment_status');
 		$paymeny_date = $request->input('payment_date');
         $exp_date = Carbon::now()->addDays($paymeny_date)->format('Y-m-d\TH:i:s');
 
-		
-		
         $params = [
-//			'number' => '2002',
             'NIP' => $client->NIP,
             'name' => $client->name,
             'firstName' => $client->firstName,
@@ -74,7 +69,6 @@ class InvoiceController extends Controller
             'postcode' => $client->postcode,
 			'postcode_town' => $client->postcode_town,
             'property_number' => $client->property_number,
-//            'product' => $product,
             'payment_status' => $payment_status,
         ];
       
@@ -83,14 +77,16 @@ class InvoiceController extends Controller
 
         if ($invoice != false) {
 			
-          $client->invoice()->save($invoice);
-//          $position = new InvoicePosition();
-//          
-//          $position->amount = $points;
-//          $position->item = $product;
+         $client->invoice()->save($invoice);
 
-//          $invoice->position()->save($position);
-      
+         foreach ($product as $key => $value) {
+            $position = new InvoicePosition();
+            $position->price = $product_price[$key];
+            $position->product_count = $product_count[$key];
+            $position->item = $value;
+            $invoice->position()->save($position);
+         };
+
         return redirect()
                 ->back()
                 ->with('info', 'Twoja faktura została utworzona.');
@@ -162,19 +158,20 @@ class InvoiceController extends Controller
         //
     }
 
-    public function generatePDFInvoice($user, $invoice)
+    public function generatePDFInvoice($invoice)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         $invoice = Invoice::find($invoice);
 
-        if ($invoice->client_id == $user->client->id || $user->roles[0]->name == 'Admin') {
+        dd($invoice);
+
             if (!is_null($invoice)) {
                 $dompdf = new Dompdf();
                 $dompdf->loadHtml($invoice->renderInvoice($invoice));
                 $dompdf->render();
                 $dompdf->stream('faktura.pdf');
             }
-        }
+        
     }
 
 

@@ -10,7 +10,7 @@
 							<h3 class="mb-0">{{ __('Lista faktur') }}</h3>
 						</div>
 						<div class="col-4 text-right">
-							<a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
+							<a href="{{ route('client.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
 						</div>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">{{ __('NIP') }}</th>
-								<th scope="col">{{ __('Nazwa') }}</th>
+								<th scope="col">{{ __('Firma') }}</th>
 								<th scope="col">{{ __('Imie') }}</th>
 								<th scope="col">{{ __('Nazwisko') }}</th>
 								<th scope="col">{{ __('ulica') }}</th>
@@ -45,48 +45,44 @@
 							@foreach ($invoices as $invoice)
 							<tr>
 								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP }}</a>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP === "" ? $client->NIP : "Osoba prywatna" }}</a>
 								</td>
 								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP === "" ? $client->NIP : "---" }}</a>
+								</td>	
+								<td>
 									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->firstName }}  tt</a>
-								</td>								{{--
+								</td>	
+								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->lastName }}  tt</a>
+								</td>		
+								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->street }}  tt</a>
+								</td>	
+								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->town }}  tt</a>
+								</td>		
+								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->post_code }}  tt</a>
+								</td>		
+								<td>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->phone_number }}  tt</a>
+								</td>						
+						
 								<td class="text-right">
-									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											@if ($client->id != auth()->id())
-											<form action="{{ route('user.destroy', $user) }}" method="post">
-												@csrf @method('delete')
-
-												<a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edytuj') }}</a>
-												<button type="button" class="dropdown-item" onclick="confirm('{{ __(" Czy na pewno chcesz usunąć tego użytkownika? ") }}') ? this.parentElement.submit() : ''">
-                                                                {{ __('Usuń') }}
-                                                            </button>
-											</form>
-											@else
-											<a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edytuj') }}</a> @endif
-										</div>
-									</div>
+									<a class="btn btn-sm btn-primary" href="{{ route('invoice.generatePDF', ['id' => Auth::user()->id, 'invoice' => $invoice ]) }}" type="button">Pobierz</a>
+									<button class="btn btn-sm btn-primary" type="button">Zobacz</button>
 								</td>
-								--}}
+								
 							</tr>
 							@endforeach
 						</tbody>
 					</table>
 				</div>
-				{{--
-				<div class="card-footer py-4">
-					<nav class="d-flex justify-content-end" aria-label="...">
-						{{ $client->links() }}
-					</nav>
-				</div>
-				--}}
 			</div>
 		</div>
 	</div>
-
+	
 	@include('layouts.footers.auth')
 </div>
 @endsection

@@ -54,4 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'invoice.destroy'
     ]);
 
+    Route::get('faktury/pdf/{invoice}', [
+        'uses' => 'InvoiceController@generatePDFInvoice',
+        'as' => 'invoice.generatePDF',
+    ]);
+
 });

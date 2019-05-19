@@ -85,40 +85,6 @@ class Invoice extends Model
             return false;
         }
     }
-//  
-//    public function fillInvoiceADmin(Array $params, Invoice $invoice)
-//    {
-//        if (count($params) == 13) {
-//            $invoice->number = $this->generateInvoiceNumber();
-//            $invoice->price = $params['price'];
-//            $invoice->payment_form = $params['payment_form'];
-//            $invoice->status = 0;
-//            $invoice->category = $params['category'];
-//            $invoice->NIP = $params['NIP'];
-//            $invoice->company = $params['company'];
-//            $invoice->firstName = $params['firstName'];
-//            $invoice->lastName = $params['lastName'];
-//            $invoice->town = $params['town'];
-//            $invoice->street = $params['street'];
-//            $invoice->property_number = $params['property_number'];
-//            $invoice->postcode = $params['postcode'];
-//            $invoice->status = $params['status'];
-//            $invoice->product = $params['product'];
-//            return $invoice;
-//        } else {
-//            return false;
-//        }
-//    }
-
-//    public function getValue()
-//    {
-//        return $this->quantity * $this->price;
-//    }
-
-//    public function getDateOfIssue()
-//    {
-//        return $this->created_at->format('d.m.Y');
-//    }
 
     public function client()
     {
@@ -130,18 +96,16 @@ class Invoice extends Model
         return $this->hasMany('App\InvoicePosition');
     }
 
-//    public function renderInvoice(Invoice $invoice)
-//    {
-//        $address = Address::where('user_id', Auth::user()->id)->first();
-//        $invoice_positions = DB::table('invoice_positions')
-//            ->select(DB::raw('count(*) as item_count, item, amount'))
-//            ->where('invoice_id', $invoice->id)
-//            ->groupBy('amount')
-//            ->get();
-//        return view('invoices/invoicePDF', compact('invoice', 'address', 'invoice_positions'))->render();
-//    }
-
-
+   public function renderInvoice(Invoice $invoice)
+   {
+       $address = Address::where('user_id', Auth::user()->id)->first();
+       $invoice_positions = DB::table('invoice_positions')
+           ->select(DB::raw('count(*) as item_count, item, amount'))
+           ->where('invoice_id', $invoice->id)
+           ->groupBy('amount')
+           ->get();
+       return view('invoices/invoicePDF', compact('invoice', 'address', 'invoice_positions'))->render();
+   }
 }
 
 

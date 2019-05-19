@@ -45,7 +45,7 @@
 							@foreach ($clients as $client)
 							<tr>
 								<td>
-									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP }}</a>
+									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP === "" ? $client->NIP : "Osoba prywatna" } }}</a>
 								</td>
 								<td>{{ $client->company }}</td>
 
