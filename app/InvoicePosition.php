@@ -9,7 +9,8 @@ class InvoicePosition extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'amount',
+        'invoice_id',
+        'product_count',
         'item'
     ];
 }

@@ -67,6 +67,11 @@ class Invoice extends Model
 		
 	}
 
+    public function getDateOfIssue()
+    {
+        return $this->created_at->format('d.m.Y');
+    }
+
     public function fillInvoice(Array $params, Invoice $invoice)
     {
         if (count($params) == 10) {
@@ -98,13 +103,8 @@ class Invoice extends Model
 
    public function renderInvoice(Invoice $invoice)
    {
-       $address = Address::where('user_id', Auth::user()->id)->first();
-       $invoice_positions = DB::table('invoice_positions')
-           ->select(DB::raw('count(*) as item_count, item, amount'))
-           ->where('invoice_id', $invoice->id)
-           ->groupBy('amount')
-           ->get();
-       return view('invoices/invoicePDF', compact('invoice', 'address', 'invoice_positions'))->render();
+       $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
+       return view('invoices/pdf', compact('invoice', 'invoice_positions'))->render();
    }
 }
 

@@ -160,10 +160,7 @@ class InvoiceController extends Controller
 
     public function generatePDFInvoice($invoice)
     {
-        // $user = Auth::user();
         $invoice = Invoice::find($invoice);
-
-        dd($invoice);
 
             if (!is_null($invoice)) {
                 $dompdf = new Dompdf();
@@ -171,8 +168,6 @@ class InvoiceController extends Controller
                 $dompdf->render();
                 $dompdf->stream('faktura.pdf');
             }
-        
     }
-
-
+    
 }
