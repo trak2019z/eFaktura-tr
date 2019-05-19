@@ -104,22 +104,15 @@ class InvoiceController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user, $invoice)
+    public function show($invoice)
     {
-        $user = Auth::user();
         $invoice = Invoice::find($invoice);
         
-        if ($invoice->client_id == $user->client->id || $user->roles[0]->name == 'Admin') {
             if (!is_null($invoice)) {
-                $address = Address::where('user_id', Auth::user()->id)->first();
-                $invoice_positions = DB::table('invoice_positions')
-                    ->select(DB::raw('count(*) as item_count, item, amount'))
-                    ->where('invoice_id', $invoice->id)
-                    ->groupBy('amount')
-                    ->get();
-                return view('invoices/invoice', compact('invoice', 'address', 'invoice_positions'));
+                $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
+                return view('invoices/invoice', compact('invoice', 'invoice_positions'));
             }
-        }
+        
         return redirect('/');
 
     }
@@ -169,5 +162,5 @@ class InvoiceController extends Controller
                 $dompdf->stream('faktura.pdf');
             }
     }
-    
+
 }

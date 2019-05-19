@@ -59,4 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'invoice.generatePDF',
     ]);
 
+    Route::get('uzytkownik/{id}/faktury/{invoice}', [
+        'uses' => 'InvoiceController@show',
+        'as' => 'invoice.show',
+    ]);
+
 });

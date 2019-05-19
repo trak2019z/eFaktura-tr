@@ -71,7 +71,7 @@
 						
 								<td class="text-right">
 									<a class="btn btn-sm btn-primary" href="{{ route('invoice.generatePDF', ['id' => Auth::user()->id, 'invoice' => $invoice ]) }}" type="button">Pobierz</a>
-									<button class="btn btn-sm btn-primary" type="button">Zobacz</button>
+									<a class="btn btn-sm btn-primary" href="{{ route('invoice.show', ['id' => Auth::user()->id, 'invoice' => $invoice ]) }}" type="button">Zobacz</a>
 								</td>
 								
 							</tr>
