@@ -86,7 +86,6 @@ class InvoiceController extends Controller
             $position->item = $value;
             $invoice->position()->save($position);
          };
-
         return redirect()
                 ->back()
                 ->with('info', 'Twoja faktura została utworzona.');

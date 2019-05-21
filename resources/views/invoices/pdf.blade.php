@@ -264,7 +264,7 @@
 
     <section>
       <div class="footer">
-          TEL: 508 989 500 | E-mail: info@agrovisit.pl
+          TEL: 111 222 333 | E-mail: 145600@stud.prz.edu.pl
       </div>
     </section>
   </div>

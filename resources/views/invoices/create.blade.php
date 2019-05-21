@@ -7,7 +7,7 @@
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0">{{ __('Dodaj nowego kontrahenta') }}</h3>
+							<h3 class="mb-0">{{ __('Dodaj nową fakturę') }}</h3>
 						</div>
 						<div class="col-4 text-right">
 							<a href="{{ route('invoice.index') }}" class="btn btn-sm btn-primary">{{ __('Wróć do listy kontrahentów') }}</a>
@@ -25,7 +25,6 @@
 								<label class="form-control-label" for="input-name">{{ __('Nazwa kontrahenta') }}</label>
 		
 								<div class="form-group">
-									<label class="form-control-label" for="exampleFormControlSelect1">Example select</label>
 									<select class="form-control" id="exampleFormControlSelect1" name="id">
 										@foreach ($clients as $client)
 											<option value="{{ $client->id }}">{{ $client->name }} {{ $client->firstName }} {{ $client->lastName }}</option>

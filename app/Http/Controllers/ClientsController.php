@@ -12,9 +12,7 @@ class ClientsController extends Controller
     public function index(User $model)
     {
 	   	$clients = Client::orderBy('id', 'DESC')->paginate(3);
-		
-//		dd($clients);
-		
+	
         return view('clients.index', ['clients' => $clients]);
     }
 
@@ -25,7 +23,54 @@ class ClientsController extends Controller
      */
     public function create()
     {
+    	$clients = Client::orderBy('id', 'DESC')->paginate(30);
+
         return view('clients.create');
     }
 
+        public function store(Request $request)
+    {	
+        $client = Client::where('id', '=', $request->id)->first();
+
+        $name = $request->input('name');
+	    $NIP = $request->input('NIP');
+		$firstName = $request->input('firstName');
+        $lastName = $request->input('lastName');
+		$street = $request->input('street');
+        $town = $request->input('town');
+        $postcode = $request->input('postcode');
+        $postcode_town = $request->input('postcode_town');
+        $property_number = $request->input('property_number');
+        $phone_number = $request->input('phone_number');
+        
+
+        $params = [
+            'NIP' => $NIP,
+            'name' => $name,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'street' => $street,
+            'town' => $town,
+            'postcode' => $postcode,
+			'postcode_town' => $postcode_town,
+            'property_number' => $property_number,
+            'phone_number' => $phone_number,
+        ];
+        $client = new Client();
+        $client = $client->fillClient($params, $client);
+
+        return back()->withStatus(__('Dodano.'));
+
+      
+       
+        /*return redirect()
+                ->back()
+                ->with('info', 'Klient został dodany.');
+          
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', 'Coś poszło nie tak, spróbuj ponownie.');
+        }*/
+    }
 }

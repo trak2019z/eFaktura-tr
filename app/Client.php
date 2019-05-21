@@ -19,6 +19,24 @@ class Client extends Model
         'user_id',
     ];
 
+        public function fillClient(Array $params, Client $client)
+    {
+        if (count($params) == 10) {
+            $client->name = $params['name'];
+			$client->NIP = $params['NIP'];
+			$client->firstName = $params['firstName'];
+			$client->lastName = $params['lastName'];
+			$client->street = $params['street'];
+			$client->town = $params['town'];
+			$client->postcode = $params['postcode'];
+			$client->postcode_town = $params['postcode_town'];
+			$client->property_number = $params['property_number'];
+			$client->status = $params['phone_number'];
+            return $client;
+        } else {
+            return false;
+        }
+    }
     public function user()
     {
         return $this->belongsTo('App\User');

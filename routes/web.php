@@ -21,8 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('/klient', 'ClientsController@index')->name('client.index');
-	Route::get('/klient/create', 'ClientsController@create')->name('client.create');
+    Route::get('/klienci', 'ClientsController@index')->name('clients.index');
+	Route::get('/klienci.create', 'ClientsController@create')->name('clients.create');
 	
 	Route::get('faktury', [
         'uses' => 'InvoiceController@index',
@@ -64,4 +64,33 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'invoice.show',
     ]);
 
+
+     Route::get('klienci', [
+        'uses' => 'ClientsController@index',
+        'as' => 'client.index'
+    ]);
+     Route::get('klienci/create', [
+        'uses' => 'ClientsController@create',
+        'as' => 'client.create'
+    ]);
+
+    Route::post('klienci/store', [
+        'uses' => 'ClientsController@store',
+        'as' => 'client.store'
+    ]);
+
+    Route::get('klienci/edit/{id}', [
+        'uses' => 'ClientsController@edit',
+        'as' => 'client.edit'
+    ]);
+
+    Route::put('klienci/{id}', [
+        'uses' => 'ClientsController@update',
+        'as' => 'client.update'
+    ]);
+
+    Route::delete('klienci/{id}', [
+        'uses' => 'ClientsController@destroy',
+        'as' => 'client.destroy'
+    ]);
 });
