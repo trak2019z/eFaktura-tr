@@ -37,7 +37,6 @@
 								<th scope="col">{{ __('ulica') }}</th>
 								<th scope="col">{{ __('miasto') }}</th>
 								<th scope="col">{{ __('kod pocztowy') }}</th>
-								<th scope="col">{{ __('numer telefonu') }}</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
@@ -45,30 +44,15 @@
 							@foreach ($invoices as $invoice)
 							<tr>
 								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP === "" ? $client->NIP : "Osoba prywatna" }}</a>
+									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP != "" ? $invoice->NIP : "Osoba prywatna" }}</a>
 								</td>
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP === "" ? $client->NIP : "---" }}</a>
-								</td>	
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->firstName }}  tt</a>
-								</td>	
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->lastName }}  tt</a>
-								</td>		
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->street }}  tt</a>
-								</td>	
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->town }}  tt</a>
-								</td>		
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->post_code }}  tt</a>
-								</td>		
-								<td>
-									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->phone_number }}  tt</a>
-								</td>						
-						
+								<td>{{ $invoice->NIP != "" ? $invoice->name : "Osoba prywatna" }}</td>
+
+								<td> {{ $invoice->firstName }}</td>
+								<td> {{ $invoice->lastName  }}</td>
+                                <td> {{ $invoice->street    }}</td>
+                                <td> {{ $invoice->town      }}</td>
+                                <td> {{ $invoice->postcode  }}</td>
 								<td class="text-right">
 									<a class="btn btn-sm btn-primary" href="{{ route('invoice.generatePDF', ['id' => Auth::user()->id, 'invoice' => $invoice ]) }}" type="button">Pobierz</a>
 									<a class="btn btn-sm btn-primary" href="{{ route('invoice.show', ['id' => Auth::user()->id, 'invoice' => $invoice ]) }}" type="button">Zobacz</a>

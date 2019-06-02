@@ -45,9 +45,9 @@
 							@foreach ($clients as $client)
 							<tr>
 								<td>
-									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP === "" ? $client->NIP : "Osoba prywatna" }}</a>
+									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP != "" ? $client->NIP : "Osoba prywatna" }}</a>
 								</td>
-								<td>{{ $client->company }}</td>
+								<td>{{ $client->NIP != "" ? $client->name : "Osoba prywatna" }}</td>
 
 								<td>
 									<a href="mailto:{{ $client->firstName }}">{{ $client->firstName }}</a>
@@ -55,6 +55,10 @@
 								<td>
 									<a href="mailto:{{ $client->lastName }}">{{ $client->lastName }}</a>
 								</td>
+                                <td> {{$client->street}}</td>
+                                <td> {{$client->town}} </td>
+                                <td> {{$client->postcode}}</td>
+                                <td> {{$client->phone_number}} </td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

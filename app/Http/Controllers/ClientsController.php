@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\User;
+use App\Http\Requests\ClientRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,7 @@ class ClientsController extends Controller
 {
     public function index(User $model)
     {
-	   	$clients = Client::orderBy('id', 'DESC')->paginate(3);
+	   	$clients = Client::orderBy('id', 'DESC')->paginate(200);
 	
         return view('clients.index', ['clients' => $clients]);
     }
@@ -28,7 +29,7 @@ class ClientsController extends Controller
         return view('clients.create');
     }
 
-        public function store(Request $request)
+        public function store(ClientRequest $request)
     {	
         $params = [
        
@@ -43,22 +44,20 @@ class ClientsController extends Controller
         'property_number' => $request->input('property_number'),
         'phone_number' => $request->input('phone_number'),
         ];
+
         $client = new Client();
         $client = $client->fillClient($params, $client);
         $client->save();
-        
-        return back()->withStatus(__('Dodano.'));
 
-      
-       
-        /*return redirect()
+        if ($client != false) {
+        return redirect()
                 ->back()
                 ->with('info', 'Klient został dodany.');
-          
+
         } else {
             return redirect()
                 ->back()
                 ->with('error', 'Coś poszło nie tak, spróbuj ponownie.');
-        }*/
+        };
     }
 }

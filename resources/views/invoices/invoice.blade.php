@@ -259,12 +259,18 @@
         </div>
         <div class="right-data">
           <h5 class="underline">Nabywca</h5>
-          @if($invoice->company != "")
-          <span><strong>{{$invoice->company}}</strong></span> @else
-          <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span> @endif
-          <span>{{$invoice->town}}, {{$invoice->street}} {{$invoice->property_number}}</span>
-          <span>{{$invoice->postcode }} {{$invoice->town}}</span> @if($invoice->company != "")
-          <span>NIP: {{$invoice->NIP}}</span> @endif
+          @if($invoice->name != "")
+            <span><strong>{{$invoice->name}}</strong></span>
+          @else
+            <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span>
+          @endif
+          <span>{{$invoice->street}} {{$invoice->property_number}}, {{$invoice->town}}</span>
+          <span>{{$invoice->postcode }} {{$invoice->town}}</span>
+
+          @if($invoice->name != "")
+            <span>NIP: {{$invoice->NIP}}</span>
+          @endif
+
         </div>
       </section>
       <section class="info">

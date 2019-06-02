@@ -24,7 +24,7 @@ class CreateClientTable extends Migration
             $table->string('street')->nullable();
             $table->string('town');
             $table->string('postcode');
-            $table->string('postcode_town');
+            $table->string('postcode_town')->nullable();
             $table->string('property_number');
             $table->string('phone_number')->nullable();
 

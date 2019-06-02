@@ -182,20 +182,20 @@
 
 <body>
   <div class="container">
-    <section>
-      <div class="left">
-      </div>
-      <div class="right align-right">
-        <span class="title">FAKTURA</span>
-        <span>NUMER: <strong>{{$invoice->number}}</strong></span>
-        @if($invoice->order)
-        <span>ZAMÓWIENIE: <strong>{{$invoice->order}}</strong></span>
-        @endif
-        <span>DATA WYSTAWIENIA: <strong>{{$invoice->getDateOfIssue()}}</strong></span>
-      </div>
-    </section>
-    <section class="data">
-      <div class="left-data">
+    <div class="wrapper">
+      <section>
+
+        <div class="right align-right">
+          <span class="title">FAKTURA</span>
+          <span>NUMER: <strong>{{$invoice->number}}</strong></span>
+          @if($invoice->order)
+          <span>ZAMÓWIENIE: <strong>{{$invoice->order}}</strong></span>
+          @endif
+          <span>DATA WYSTAWIENIA: <strong>{{$invoice->getDateOfIssue()}}</strong></span>
+        </div>
+      </section>
+      <section class="data">
+        <div class="left-data">
         <h5 class="underline">Sprzedawca</h5>
         <span><strong>Nazwa firmy</strong></span>
         <span>adres</span>
@@ -204,46 +204,48 @@
         <br>
         <span>Numer konta</span>
         <span>Bank</span>
-      </div>
+        </div>
         <div class="right-data">
           <h5 class="underline">Nabywca</h5>
-          @if($invoice->category == 1)
-          <span><strong>{{$invoice->company}}</strong></span> 
+          @if($invoice->name != "")
+            <span><strong>{{$invoice->name}}</strong></span>
           @else
-          <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span> 
+            <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span>
           @endif
-          <span>{{$invoice->town}}, {{$invoice->street}} {{$invoice->property_number}}</span>
+          <span>{{$invoice->street}} {{$invoice->property_number}}, {{$invoice->town}}</span>
           <span>{{$invoice->postcode }} {{$invoice->town}}</span>
-          @if($invoice->category == 1)
-          <span>NIP: {{$invoice->NIP}}</span>
-          @endif
-        </div>
-    </section>
-    <section class="info">
-      <table class="table">
-        <tr class="strong">
-          <td>Nazwa towaru/usługi</td>
-          <td>J.m</td>
-          <td>Ilość</td>
-          <td>Cena jednostkowa</td>
-          <td>Wartość</td>
-        </tr>
-        @foreach($invoice_positions as $key => $position)
-          <tr>
-            <td class="item">{{$position->item}}</td>
-            <td>szt.</td>
-            <td>{{$position->item_count}}</td>
-            <td>{{$position->amount}} zł</td>
-            <td>{{$position->item_count * $position->amount}} zł</td>
-          </tr>
-        @endforeach
-      </table>
-    </section>
 
-    <section class="client">
-      <div class="align-right">
-        <span class="px16">Do zapłaty</span>
-        <span class="title">{{$total_price}} zł</span>
+          @if($invoice->name != "")
+            <span>NIP: {{$invoice->NIP}}</span>
+          @endif
+
+        </div>
+      </section>
+      <section class="info">
+        <table class="table">
+          <tr class="strong">
+            <td>Nazwa towaru/usługi</td>
+            <td>J.m</td>
+            <td>Ilość</td>
+            <td>Cena jednostkowa</td>
+            <td>Wartość</td>
+          </tr>
+          @foreach($invoice_positions as $key => $position)
+          <tr>
+            <td>{{$position->item}}</td>
+            <td>szt.</td>
+            <td>{{$position->product_count}}</td>
+            <td>{{$position->price}} zł</td>
+            <td>{{$position->product_count * $position->price}} zł</td>
+          </tr>
+          @endforeach
+        </table>
+      </section>
+
+      <section class="client">
+        <div class="align-right">
+          <span class="px16">Do zapłaty</span>
+          <span class="title">{{$total_price}} zł</span>
           @if($invoice->payment_form == 'przelew')
             @if($invoice->status == 1)
             <span>FORMA PŁATNOŚCI: <strong>{{$invoice->payment_form}}</strong></span> 
@@ -254,19 +256,21 @@
             @endif
           @endif
           @if($invoice->payment_form == 'dotpay')
+          <span>FORMA PŁATNOŚCI: <strong>przelew</strong></span> 
           <span>TERMIN PŁATNOŚCI: <strong>Zapłacono</strong></span> 
           @endif
           @if($invoice->payment_form == 'gotówka')
+          <span>FORMA PŁATNOŚCI: <strong>{{$invoice->payment_form}}</strong></span> 
           <span>TERMIN PŁATNOŚCI: <strong>Zapłacono</strong></span> 
           @endif
-      </div>
-    </section>
-
-    <section>
-      <div class="footer">
-          TEL: 111 222 333 | E-mail: 145600@stud.prz.edu.pl
-      </div>
-    </section>
+        </div>
+      </section>
+      <section class="footer">
+        <div>
+          TEL: 123 123 123 | E-mail: biuro@eFaktura.pl
+        </div>
+      </section>
+    </div>
   </div>
 </body>
 

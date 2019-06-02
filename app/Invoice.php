@@ -76,6 +76,7 @@ class Invoice extends Model
     {
         if (count($params) == 10) {
             $invoice->number = $this->generateInvoiceNumber();
+            $invoice->name = $params['name'];
 			$invoice->NIP = $params['NIP'];
 			$invoice->firstName = $params['firstName'];
 			$invoice->lastName = $params['lastName'];
@@ -104,7 +105,8 @@ class Invoice extends Model
    public function renderInvoice(Invoice $invoice)
    {
        $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
-       return view('invoices/pdf', compact('invoice', 'invoice_positions'))->render();
+       $total_price = $invoice->totalPrice($invoice->id);
+       return view('invoices/pdf', compact('invoice', 'invoice_positions', 'total_price'))->render();
    }
 
    public function totalPrice($invoice_id)
