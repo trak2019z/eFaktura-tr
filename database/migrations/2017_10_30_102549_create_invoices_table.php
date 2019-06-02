@@ -27,6 +27,7 @@ class CreateInvoicesTable extends Migration
             $table->string('property_number');
             $table->string('status');
             $table->integer('client_id')->unsigned()->nullable();
+            $table->float('total_price')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('set null');

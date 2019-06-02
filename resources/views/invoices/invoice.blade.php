@@ -259,11 +259,11 @@
         </div>
         <div class="right-data">
           <h5 class="underline">Nabywca</h5>
-          @if($invoice->category == 1)
+          @if($invoice->company != "")
           <span><strong>{{$invoice->company}}</strong></span> @else
           <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span> @endif
           <span>{{$invoice->town}}, {{$invoice->street}} {{$invoice->property_number}}</span>
-          <span>{{$invoice->postcode }} {{$invoice->town}}</span> @if($invoice->category == 1)
+          <span>{{$invoice->postcode }} {{$invoice->town}}</span> @if($invoice->company != "")
           <span>NIP: {{$invoice->NIP}}</span> @endif
         </div>
       </section>
@@ -280,9 +280,9 @@
           <tr>
             <td>{{$position->item}}</td>
             <td>szt.</td>
-            <td>{{$position->item_count}}</td>
-            <td>{{$position->amount}} zł</td>
-            <td>{{$position->item_count * $position->amount}} zł</td>
+            <td>{{$position->product_count}}</td>
+            <td>{{$position->price}} zł</td>
+            <td>{{$position->product_count * $position->price}} zł</td>
           </tr>
           @endforeach
         </table>
@@ -291,7 +291,7 @@
       <section class="client">
         <div class="align-right">
           <span class="px16">Do zapłaty</span>
-          <span class="title">{{$invoice->price}} zł</span>
+          <span class="title">{{$total_price}} zł</span>
           @if($invoice->payment_form == 'przelew')
             @if($invoice->status == 1)
             <span>FORMA PŁATNOŚCI: <strong>{{$invoice->payment_form}}</strong></span> 
@@ -313,7 +313,7 @@
       </section>
       <section class="footer">
         <div>
-          TEL: 508 989 500 | E-mail: info@agrovisit.pl
+          TEL: 123 123 123 | E-mail: biuro@eFaktura.pl
         </div>
       </section>
     </div>

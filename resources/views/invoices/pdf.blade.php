@@ -243,7 +243,7 @@
     <section class="client">
       <div class="align-right">
         <span class="px16">Do zapłaty</span>
-        <span class="title">{{$invoice->price}} zł</span>
+        <span class="title">{{$total_price}} zł</span>
           @if($invoice->payment_form == 'przelew')
             @if($invoice->status == 1)
             <span>FORMA PŁATNOŚCI: <strong>{{$invoice->payment_form}}</strong></span> 

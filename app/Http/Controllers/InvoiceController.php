@@ -58,7 +58,8 @@ class InvoiceController extends Controller
         $payment_status = $request->input('payment_status');
 		$paymeny_date = $request->input('payment_date');
         $exp_date = Carbon::now()->addDays($paymeny_date)->format('Y-m-d\TH:i:s');
-
+       
+       
         $params = [
             'NIP' => $client->NIP,
             'name' => $client->name,
@@ -103,13 +104,14 @@ class InvoiceController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($invoice)
+    public function show($user, $invoice)
     {
         $invoice = Invoice::find($invoice);
         
             if (!is_null($invoice)) {
                 $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
-                return view('invoices/invoice', compact('invoice', 'invoice_positions'));
+                $total_price = $invoice_positions->totalPrice($invoice->id);
+                return view('invoices/invoice', compact('invoice', 'invoice_positions', 'total_price'));
             }
         
         return redirect('/');

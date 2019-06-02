@@ -106,6 +106,7 @@ class Invoice extends Model
        $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
        return view('invoices/pdf', compact('invoice', 'invoice_positions'))->render();
    }
+   
 }
 
 
