@@ -14,9 +14,5 @@ class InvoicePosition extends Model
         'product_count',
         'item'
     ];
-    public function totalPrice($invoice_id)
-    {
-        $invoice_position = InvoicePosition::where('invoice_id', $invoice_id)->get();
-        dd($invoice_id);
-    }
+
 }

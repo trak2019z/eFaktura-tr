@@ -31,7 +31,7 @@ class Client extends Model
 			$client->postcode = $params['postcode'];
 			$client->postcode_town = $params['postcode_town'];
 			$client->property_number = $params['property_number'];
-			$client->status = $params['phone_number'];
+			$client->phone_number = $params['phone_number'];
             return $client;
         } else {
             return false;

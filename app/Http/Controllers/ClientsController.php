@@ -30,35 +30,23 @@ class ClientsController extends Controller
 
         public function store(Request $request)
     {	
-        $client = Client::where('id', '=', $request->id)->first();
-
-        $name = $request->input('name');
-	    $NIP = $request->input('NIP');
-		$firstName = $request->input('firstName');
-        $lastName = $request->input('lastName');
-		$street = $request->input('street');
-        $town = $request->input('town');
-        $postcode = $request->input('postcode');
-        $postcode_town = $request->input('postcode_town');
-        $property_number = $request->input('property_number');
-        $phone_number = $request->input('phone_number');
-        
-
         $params = [
-            'NIP' => $NIP,
-            'name' => $name,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'street' => $street,
-            'town' => $town,
-            'postcode' => $postcode,
-			'postcode_town' => $postcode_town,
-            'property_number' => $property_number,
-            'phone_number' => $phone_number,
+       
+        'name' => $request->input('name'),
+	    'NIP' => $request->input('NIP'),
+		'firstName' => $request->input('firstName'),
+        'lastName' => $request->input('lastName'),
+	    'street' => $request->input('street'),
+        'town' => $request->input('town'),
+        'postcode' => $request->input('postcode'),
+        'postcode_town' => $request->input('postcode_town'),
+        'property_number' => $request->input('property_number'),
+        'phone_number' => $request->input('phone_number'),
         ];
         $client = new Client();
         $client = $client->fillClient($params, $client);
-
+        $client->save();
+        
         return back()->withStatus(__('Dodano.'));
 
       

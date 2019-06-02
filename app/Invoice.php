@@ -106,6 +106,17 @@ class Invoice extends Model
        $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
        return view('invoices/pdf', compact('invoice', 'invoice_positions'))->render();
    }
+
+   public function totalPrice($invoice_id)
+   {
+        $invoice_position = InvoicePosition::where('invoice_id', $invoice_id)->get();
+        $total_price = 0;
+        foreach ($invoice_position as $key => $product)
+        {
+            $total_price = $total_price + ($product->price * $product->product_count);
+        }
+        return $total_price;
+   }
    
 }
 

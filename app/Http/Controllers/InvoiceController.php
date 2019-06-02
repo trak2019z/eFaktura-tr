@@ -110,7 +110,7 @@ class InvoiceController extends Controller
         
             if (!is_null($invoice)) {
                 $invoice_positions = InvoicePosition::where('invoice_id', $invoice->id)->orderBy('id', 'desc')->get();
-                $total_price = $invoice_positions->totalPrice($invoice->id);
+                $total_price = $invoice->totalPrice($invoice->id);
                 return view('invoices/invoice', compact('invoice', 'invoice_positions', 'total_price'));
             }
         
