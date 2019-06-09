@@ -25,7 +25,7 @@
 								<label class="form-control-label" for="input-name">{{ __('Nazwa kontrahenta') }}</label>
 		
 								<div class="form-group">
-									<select class="form-control" id="exampleFormControlSelect1" name="id">
+									<select class="js-select form-control" name="id">
 										@foreach ($clients as $client)
 											<option value="{{ $client->id }}">{{ $client->name }} {{ $client->firstName }} {{ $client->lastName }}</option>
 										@endforeach
