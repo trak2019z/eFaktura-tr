@@ -26,8 +26,8 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'NIP' => 'required_if:category,==,1|regex:/[0-9]{10}/|max:12',
+            'name' => 'required_if:category,==,1|max:255',
+            'NIP' => 'required_if:category,==,1|nullable|regex:/[0-9]{10}/|max:12',
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'street' => 'required|max:255',
@@ -43,6 +43,7 @@ class ClientRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required_if' => 'Pole wymygane jeśli wybrano firmę',
             'name.required' => "Pole Nazwa firmy jest wymagane",
             'firstName.required' => "Pole Imię jest wymagane",
             'lastName.required' => "Pole Nazwisko jest wymagane",

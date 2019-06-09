@@ -23,6 +23,39 @@
                             <div class="row">
 
                             <div class="col-lg-4 col-sm-6">
+                            <div class="form-group{{  $errors->has('category') ? ' has-error' : ''}}">
+                            <div class="form col s12 xl7" id="radio-wrapper">
+                                @if(Request::old('category') == 1)
+                                <input type="radio" class="with-gap" name="category" class="form-control" placeholder="Nazwa firmy" value="1" id="company-select" checked/>
+                                <label class="label-gap" for="company-select">Firma</label>
+
+                                <input type="radio" class="with-gap" name="category" class="form-control" value="2" id="person-select" />
+                                <label class="label-gap" for="person-select">Osoba fizyczna</label> 
+                                @elseif(Request::old('category') == 2)
+                                <input type="radio" class="with-gap" name="category" class="form-control" placeholder="Nazwa firmy" value="1" id="company-select" />
+                                <label class="label-gap" for="company-select">Firma</label>
+
+                                <input type="radio" class="with-gap" name="category" class="form-control" value="2" id="person-select" checked/>
+                                <label class="label-gap" for="person-select">Osoba fizyczna</label> 
+                                @else
+                                <input type="radio" class="with-gap" name="category" class="form-control" placeholder="Nazwa firmy" value="1" id="company-select" checked/>
+                                <label class="label-gap" for="company-select">Firma</label>
+
+                                <input type="radio" class="with-gap" name="category" class="form-control" value="2" id="person-select"/>
+                                <label class="label-gap" for="person-select">Osoba fizyczna</label> @endif
+                            </div>
+                            
+                            <div for="category" class="form col s12 xl5 error-input">
+                                <span class="help-block" data-error="company">
+                                @if ($errors->has('category'))
+                                    <label class="invalid">{{  $errors->first('category') }}</label>
+                                @endif
+                                </span>
+                            </div>
+                            </div>
+                            </div> 
+
+                            <div class="col-lg-4 col-sm-6">
                                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nazwa Firmy') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nazwa Firmy') }}" value="{{ old('name') }}" autofocus>
