@@ -137,7 +137,7 @@
 
 							<div class="col col-xl-2 col-sm-12">
 								<div class="form-group">
-									<button type="button" class="js-invoice-btn-add btn btn-success">Dodaj</button>
+									<button type="button" class="js-invoice-btn-add btn btn-success">Dodaj produkt</button>
 								</div>
 							</div>
 							</div>

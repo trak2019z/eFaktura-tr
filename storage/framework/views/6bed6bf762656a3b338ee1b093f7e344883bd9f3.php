@@ -17,6 +17,8 @@
         <link href="<?php echo e(asset('argon')); ?>/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="<?php echo e(asset('argon')); ?>/css/argon.css?v=1.0.0" rel="stylesheet">
+        <link type="text/css" href="<?php echo e(asset('argon')); ?>/css/select2.min.css" rel="stylesheet">
+        <link type="text/css" href="<?php echo e(asset('argon')); ?>/css/custom.css" rel="stylesheet">
     </head>
     <body class="<?php echo e($class ?? ''); ?>">
         <?php if(auth()->guard()->check()): ?>
@@ -43,5 +45,8 @@
         
         <!-- Argon JS -->
         <script src="<?php echo e(asset('argon')); ?>/js/argon.js?v=1.0.0"></script>
+        <script src="<?php echo e(asset('argon')); ?>/js/select2.min.js"></script>
+        <script src="<?php echo e(asset('argon')); ?>/js/select2-pl.js"></script>
+        <script src="<?php echo e(asset('argon')); ?>/js/custom.js?v=1.0.0"></script>
     </body>
 </html><?php /**PATH D:\Sem I i II MGR\Aplikacje Internetowe\xampp\htdocs\eFaktura\resources\views/layouts/app.blade.php ENDPATH**/ ?>

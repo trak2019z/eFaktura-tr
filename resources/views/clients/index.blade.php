@@ -31,7 +31,7 @@
 						<thead class="thead-light">
 							<tr>
 								<th scope="col">{{ __('NIP') }}</th>
-								<th scope="col">{{ __('Nazwa') }}</th>
+								<th scope="col">{{ __('Firma') }}</th>
 								<th scope="col">{{ __('Imie') }}</th>
 								<th scope="col">{{ __('Nazwisko') }}</th>
 								<th scope="col">{{ __('ulica') }}</th>
@@ -44,11 +44,15 @@
 						<tbody>
 							@foreach ($clients as $client)
 							<tr>
+					            @if ($client->category == 1)
 								<td>
-									<a href="{{ route('invoice.index', $client->id ) }}">{{ $client->NIP != "" ? $client->NIP : "Osoba prywatna" }}</a>
+									<a href="{{ route('client.index', $client->id ) }}">{{ $client->NIP != "" ? $client->NIP : "Osoba prywatna" }}</a>
 								</td>
-								<td>{{ $client->NIP != "" ? $client->name : "Osoba prywatna" }}</td>
-
+                                        <td>{{ $client->name  }}</td>
+                                @else
+                                        <td>  Osoba Prywatna </td>
+                                        <td>  Osoba Prywatna </td>
+                                @endif
 								<td>
 									<a href="mailto:{{ $client->firstName }}">{{ $client->firstName }}</a>
 								</td>
