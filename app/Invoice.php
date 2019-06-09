@@ -74,8 +74,9 @@ class Invoice extends Model
 
     public function fillInvoice(Array $params, Invoice $invoice)
     {
-        if (count($params) == 10) {
+        if (count($params) == 11) {
             $invoice->number = $this->generateInvoiceNumber();
+            $invoice->category = $params['category'];
             $invoice->name = $params['name'];
 			$invoice->NIP = $params['NIP'];
 			$invoice->firstName = $params['firstName'];

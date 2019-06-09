@@ -61,6 +61,7 @@ class InvoiceController extends Controller
        
        
         $params = [
+            'category' => $client->category,
             'NIP' => $client->NIP,
             'name' => $client->name,
             'firstName' => $client->firstName,

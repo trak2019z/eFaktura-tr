@@ -259,7 +259,7 @@
         </div>
         <div class="right-data">
           <h5 class="underline">Nabywca</h5>
-          @if($invoice->name != "")
+          @if($invoice->category == "1")
             <span><strong>{{$invoice->name}}</strong></span>
           @else
             <span><strong>{{$invoice->firstName}} {{$invoice->lastName}}</strong></span>
@@ -267,7 +267,7 @@
           <span>{{$invoice->street}} {{$invoice->property_number}}, {{$invoice->town}}</span>
           <span>{{$invoice->postcode }} {{$invoice->town}}</span>
 
-          @if($invoice->name != "")
+          @if($invoice->category == "1")
             <span>NIP: {{$invoice->NIP}}</span>
           @endif
 

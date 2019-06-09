@@ -10,7 +10,7 @@
 							<h3 class="mb-0">{{ __('Lista faktur') }}</h3>
 						</div>
 						<div class="col-4 text-right">
-							<a href="{{ route('client.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nowego kontrahenta') }}</a>
+							<a href="{{ route('invoice.create') }}" class="btn btn-sm btn-primary">{{ __('Dodaj nową fakturę') }}</a>
 						</div>
 					</div>
 				</div>
@@ -43,11 +43,15 @@
 						<tbody>
 							@foreach ($invoices as $invoice)
 							<tr>
+                                @if ($invoice->category == 1)
 								<td>
 									<a href="{{ route('invoice.index', $invoice->id ) }}">{{ $invoice->NIP != "" ? $invoice->NIP : "Osoba prywatna" }}</a>
 								</td>
-								<td>{{ $invoice->NIP != "" ? $invoice->name : "Osoba prywatna" }}</td>
-
+                                        <td>{{ $invoice->name  }}</td>
+                                @else
+                                        <td>  Osoba Prywatna </td>
+                                        <td>  Osoba Prywatna </td>
+                                @endif
 								<td> {{ $invoice->firstName }}</td>
 								<td> {{ $invoice->lastName  }}</td>
                                 <td> {{ $invoice->street    }}</td>

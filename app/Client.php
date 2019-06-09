@@ -21,7 +21,8 @@ class Client extends Model
 
         public function fillClient(Array $params, Client $client)
     {
-        if (count($params) == 10) {
+        if (count($params) == 11) {
+            $client->category = $params['category'];
             $client->name = $params['name'];
 			$client->NIP = $params['NIP'];
 			$client->firstName = $params['firstName'];

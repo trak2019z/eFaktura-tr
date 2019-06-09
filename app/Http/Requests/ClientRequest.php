@@ -43,6 +43,7 @@ class ClientRequest extends FormRequest
     public function messages()
     {
         return [
+            'NIP.required_if' => 'Pole wymygane jeśli wybrano firmę',
             'name.required_if' => 'Pole wymygane jeśli wybrano firmę',
             'name.required' => "Pole Nazwa firmy jest wymagane",
             'firstName.required' => "Pole Imię jest wymagane",
